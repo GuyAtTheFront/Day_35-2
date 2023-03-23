@@ -1,0 +1,58 @@
+<!-- <p>cart-form works!</p> -->
+
+
+<h2>THIS IS CART</h2>
+
+<form [formGroup]="cartForm" (ngSubmit)="processForm()">
+    <table>
+        <tr>
+            <td>
+                <label>Name: </label>
+            </td>
+            <td>
+                <input type="text" formControlName="name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Email: </label>
+            </td>
+            <td>
+                <input type="text" formControlName="email">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" (click)="onAdd()">Add</button>
+            </td>
+            <td>
+                <button type="submit">Save</button>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <hr>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody formArrayName="items">
+            <tr *ngFor="let item of itemsArray.controls; let idx = index" [formGroupName]="idx">
+                <td>
+                    <input type="text" formControlName="name">
+                </td>
+                <td>
+                    <input type="number" formControlName="quantity">
+                </td>
+                <td>
+                    <button type="button" (click)="onDelete(idx)">X</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</form>
